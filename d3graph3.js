@@ -9,7 +9,7 @@ function createGraph(){
   //var filename = day + "_" + month + "_" + year + ".csv"
 
   var fileTxt = document.getElementById("files");
-  var filename = fileTxt.options[fileTxt.selectedIndex].text;
+  var filename = "./logs/" + fileTxt.options[fileTxt.selectedIndex].text;
 
   // Set the dimensions of the canvas / graph
   var marginTemp = {top: 30, right: 20, bottom: 30, left: 30},
@@ -44,6 +44,10 @@ function createGraph(){
       .x(function(d) { return x(d.time); })
       .y(function(d) { return y(d.humidity); });
 
+  var pressureLine = d3.svg.line()
+      .x(function(d) { return x(d.time); })
+      .y(function(d) { return y(d.pressure); });
+
   // Adds the svg canvas
   var svgTemp = d3.select("#graph")
       .append("svg")
@@ -61,12 +65,21 @@ function createGraph(){
           .attr("transform",
                 "translate(" + marginHumid.left + "," + marginHumid.top + ")");
 
+  var svgPress = d3.select("#graph")
+      .append("svg")
+          .attr("width", width + marginHumid.left + marginHumid.right)
+          .attr("height", height + marginHumid.top + marginHumid.bottom)
+      .append("g")
+          .attr("transform",
+                "translate(" + marginHumid.left + "," + marginHumid.top + ")");
+
   // Get the data
   d3.csv(filename, function(error, data) {
       data.forEach(function(d) {
           d.time = parseTime(d.time);
-          d.temperature = +d.temperature-7;
+          d.temperature = +d.temperature-9;
           d.humidity = +d.humidity;
+          d.pressure = +d.pressure;
       });
       // Scale the range x time
       x.domain(d3.extent(data, function(d) { return d.time; }));
@@ -85,6 +98,13 @@ function createGraph(){
       svgTemp.append("g")
           .attr("class", "y axis")
           .call(yAxis);
+      // Add description
+      svgTemp.append("text")
+              .attr("x", (width / 2))
+              .attr("y", 0)
+              .attr("text-anchor", "middle")
+              .style("fill", "red")
+              .text("Temperature");
 
       // Scale the range of humidity
       y.domain([0, d3.max(data, function(d) { return d.humidity; })+2]);
@@ -101,5 +121,35 @@ function createGraph(){
       svgHumid.append("g")
           .attr("class", "y axis")
           .call(yAxis);
+      // Add description
+      svgHumid.append("text")
+              .attr("x", (width / 2))
+              .attr("y", 0)
+              .attr("text-anchor", "middle")
+              .style("fill", "blue")
+              .text("Humidity");
+
+      // Scale the range of pressure
+      y.domain([1000, d3.max(data, function(d) { return d.pressure; })+10]);
+      svgPress.append("path")
+          .attr("class", "line")
+          .attr("d", pressureLine(data))
+          .style("stroke", "green");
+      // Add the X Axis
+      svgPress.append("g")
+          .attr("class", "x axis")
+          .attr("transform", "translate(0," + height + ")")
+          .call(xAxis);
+      // Add the Y Axis
+      svgPress.append("g")
+          .attr("class", "y axis")
+          .call(yAxis);
+          // Add description
+      svgPress.append("text")
+              .attr("x", (width / 2))
+              .attr("y", 0)
+              .attr("text-anchor", "middle")
+              .style("fill", "green")
+              .text("Pressure");
   });
 }

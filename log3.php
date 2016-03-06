@@ -17,7 +17,7 @@
     </script></br>
     <select id="files" onchange="createGraph()">
       <?php
-      $dir    = '/var/www/html/sense/';
+      $dir    = '/var/www/html/sense/logs/';
       $files1 = scandir($dir);
       foreach ($files1 as $value) {
           echo "<option>";
