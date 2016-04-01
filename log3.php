@@ -36,13 +36,13 @@
     var filenameT = "./logs/" + picker.getMoment().format('DD_MM_YYYY') + "_temp.csv";
     var filenameH = "./logs/" + picker.getMoment().format('DD_MM_YYYY') + "_humidity.csv";
     var filenameP = "./logs/" + picker.getMoment().format('DD_MM_YYYY') + "_pressure.csv";
-        gt = new Dygraph(
+      var gt = new Dygraph(
             document.getElementById("graphTemp"), filenameT, {
             axisLabelFontSize : 10,
             axisLineColor : "rgb(20, 20, 20)",
             axisLabelColor : "rgb(20, 20, 20)",
-            color : "rgb(255, 0, 0)",
-            rollPeriod : 20,
+            color : "#fc403f",
+            rollPeriod : 5,
             strokeWidth:2,
             fillGraph: true,
             xlabel: 'Time',
@@ -54,13 +54,13 @@
                   'background': 'none'
                 },}
         );
-        gh = new Dygraph(
+        var gh = new Dygraph(
             document.getElementById("graphHumid"), filenameH, {
             axisLabelFontSize : 10,
             axisLineColor : "rgb(20, 20, 20)",
             axisLabelColor : "rgb(20, 20, 20)",
-            color : "rgb(0, 0, 255)",
-            rollPeriod : 20,
+            color : "#3eaaf2",
+            rollPeriod : 5,
             strokeWidth:2,
             fillGraph: true,
             xlabel: 'Time',
@@ -72,13 +72,13 @@
                   'background': 'none'
                 },}
         );
-        gp = new Dygraph(
+        var gp = new Dygraph(
             document.getElementById("graphPressure"), filenameP, {
             axisLabelFontSize : 10,
             axisLineColor : "rgb(20, 20, 20)",
             axisLabelColor : "rgb(20, 20, 20)",
-            color : "rgb(0, 255, 0)",
-            rollPeriod : 20,
+            color : "#b5f23e",
+            rollPeriod : 5,
             strokeWidth:2,
             fillGraph: true,
             xlabel: 'Time',
