@@ -1,0 +1,64 @@
+html{
+  background-color: rgba(20,20,20,1);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.header {
+  text-align: center;
+  margin-top: 100px;
+  margin-bottom : 50px;
+}
+
+.motto {
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: -20px;
+}
+
+.desc {
+  color: rgba(255, 255, 255, 0.4);
+  margin-top : -20px;
+}
+
+.languages {
+  color: rgba(112, 230, 190, 1);
+  font-size: 10pt;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+a {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.8);
+  a-moz-transition: color .3s ease-in-out;
+  -o-transition: color .3s ease-in-out;
+  -webkit-transition: color .3s ease-in-out;
+  transition: color .3s ease-in-out;
+}
+
+a:hover {
+  font-style: normal;
+  color: rgba(112, 230, 190, 1);
+  a-moz-transition: color .3s ease-in-out;
+  -o-transition: color .3s ease-in-out;
+  -webkit-transition: color .3s ease-in-out;
+  transition: color .3s ease-in-out;
+}
+
+.icon-git{
+  float:right;
+  margin-top:17px;
+}
+
+.icon-git:hover{
+  color: rgba(255, 0, 0, 0.5);
+}
+
+.icon-demo{
+  float:right;
+  margin-top:17px;
+  margin-right:25px;
+}
+
+.icon-git:demo{
+  color: rgba(255, 0, 0, 0.5);
+}
